@@ -1,0 +1,91 @@
+.editprofile{
+    width: 100%;
+    height: 87vh;
+    background-color:rgb(241, 241, 241);
+    position: relative;
+
+    .container{
+        margin: 18px;
+        background-color: white;
+        height: 82vh;
+        width:660px;
+        position: absolute;
+
+        h2{
+            font-size: 18px;
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .personal{
+            .imagee{
+                
+                width: 80%;
+                text-align: center;
+                margin-top: 0px;
+
+                
+
+                img{
+                    width: 80px;
+                    height: 80px;
+                    object-fit: cover;
+                    border-radius: 50%;
+                }
+                .icon{
+                    span{
+                        font-size: 12px;
+                        font-weight: 600;
+                    }                    
+                }
+            }
+            .elements{
+                margin: 10px;
+                // margin-top: 20px;
+                text-align: center;
+
+                .divide{
+                    margin-bottom: 14px;
+                    display: flex;
+                }
+                .mainelements{
+                    margin: 18px; 
+                    font-size: 10px;
+
+                    .infield{
+                        width: 250px;
+                        height: 1px;
+                        margin-left: 20px;
+                      
+                    }
+                }
+            }
+            .buttons
+            {
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+                .singlebut{
+                    
+                    .but{
+                        width: 70px;
+                        height: 30px;
+                       margin-right: 10px;
+                       border-radius: 10px;
+                       background-color: red;
+                       color: white;
+                       border-color: red;
+                    }
+                    .butt{
+                        width: 70px;
+                        height: 30px;
+                        border-radius: 10px;
+                       background-color: rgb(0, 255, 0);
+                       color: rgb(0, 0, 0);
+                       border-color: rgb(0, 255, 0);
+                    }
+                }
+            }
+        }
+    }
+}

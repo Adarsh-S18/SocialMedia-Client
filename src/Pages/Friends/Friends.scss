@@ -1,0 +1,52 @@
+.friends{
+    .menu{
+        margin: 30px;
+        background-color: rgb(255, 255, 255);
+        h2{
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 24px;
+        }
+        .items{
+            display: flex;
+            // align-items: center;
+            width: 100%;
+            margin: 10px;
+            background-color: rgb(243, 243, 243);
+            border-radius: 20px;
+            img{
+                height: 60px;
+                width: 60px;
+                object-fit: cover;
+                border-radius: 50%;
+                margin: 10px;
+            }
+            span{
+                margin: 10px;
+                margin-left: 60px;
+                margin-top: 20px;
+                font-weight: 700;
+                font-size: 18px;
+                font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                p{
+                    font-weight: 500;
+                    font-size: 13px;
+                    margin-top:2px;
+                    text-align: left;
+                    color: grey;
+                }
+                
+            }
+            button{
+                width: 100px;
+                height: 35px;
+                margin: 15px;
+                margin-left: 250px;
+                border-radius: 30px;
+                border-color: black;
+                background-color: black;
+                color: yellow;
+            }
+        }
+    }
+}

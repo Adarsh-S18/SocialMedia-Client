@@ -1,0 +1,151 @@
+@import "../../style.scss";
+
+.profile {
+  @include themify($themes) {
+    background-color: themed("bgSoft");
+    
+    .images {
+      width: 100%;
+      height: 200px;
+      position: relative;
+      .edit{
+        margin-left: 30rem;
+        top: 16rem;
+        font-size: xx-large;
+      }
+      .cover {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .profilePic {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        top: 80px;
+      }
+     
+    }
+    .profileContainer {
+      padding: 20px 70px;
+
+      // @include mobile{
+      //   padding: 10px;
+      // }
+
+      // @include tablet{
+      //   padding: 20px;
+      // }
+
+      .uInfo {
+        height: 300px;
+        -webkit-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
+        -moz-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
+        box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
+        border-radius: 20px;
+        background-color: themed("bg");
+        color: themed("textColor");
+        padding: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        .desc{
+          max-height: 3rem;
+          width: 15rem;
+          height: 2.2rem;
+          overflow: auto;
+          position: absolute;
+          top: 39.4rem;
+          font-size: .8rem;
+        }
+
+        .left {
+          flex: 1;
+          display: flex;
+          gap: 10px;
+          .info {
+            width: 100%;
+            margin-bottom: 10px;
+            .item {
+              display: flex;
+              margin-bottom: 20px;
+              gap: 5px;
+              color: themed("textColorSoft");
+              span {
+                font-size: 12px;
+              }
+            }
+          }
+
+          a{
+            color: themed("textColorSoft");
+          }
+        }
+
+        .center {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+
+          span {
+            font-size: 30px;
+            font-weight: 500;
+            margin-top: 2rem;
+          }
+
+          .iteem {
+            display: flex;
+            // align-items: center;
+            margin-bottom: 50px;
+            gap: 5px;
+            color: themed("textColorSoft");
+            height: 1rem;
+            width: 103%;
+            span {
+              font-size: 16px;
+              text-align: center;
+              padding-bottom: .5rem;
+            }
+          }
+          button {
+            border: none;
+            background-color: #5271ff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+          }
+        }
+
+        .right {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          gap: 10px;
+          position: relative;
+          button {
+            position: absolute;
+            top: 30px;
+            right: 0;
+            border: none;
+            background-color: #f0544f;
+            padding: 5px;
+            cursor: pointer;
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}
