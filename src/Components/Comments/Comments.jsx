@@ -48,8 +48,8 @@ function Comments({ post }) {
   };
 
 
-  const handleDeleteComment = async(commentId)=>{
-      axios.delete(`/posts/${commentId}/delete-comment`).then((res)=>{
+  const handleDeleteComment = (commentId)=>{
+      axios.delete(`/posts/${commentId}/delete-comment`)
         Swal.fire({
           text: 'Comment Deleted Successfully',
           timer: 1000,
@@ -58,7 +58,6 @@ function Comments({ post }) {
         });
         console.log('Comment deleted successfully');
         queryClient.invalidateQueries(['posts']);
-      })
   }
 
   return (
