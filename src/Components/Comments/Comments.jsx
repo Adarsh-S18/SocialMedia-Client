@@ -3,11 +3,9 @@ import './Comments.scss'
 import { AuthContext } from '../../Context/authContext'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from '../../axios'
-// import Swal from 'sweetalert2'
 import ReactTimeago from 'react-timeago'
-// import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-
-
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import Swal from 'sweetalert2';
 
 function Comments({ post }) {
   const { currentUser } = useContext(AuthContext)
@@ -24,7 +22,6 @@ function Comments({ post }) {
     },
     {
       onSuccess: () => {
-        // Invalidate and refetch
         queryClient.invalidateQueries(["posts"]);
       },
     }
@@ -38,6 +35,9 @@ function Comments({ post }) {
 
   const handleClick = async (e) => {
     e.preventDefault();
+    if (desc.trim() === "") {
+      return;
+    }
     const newComment = {
       comment: desc,
       profilePic: currentUser.profilePicture,
@@ -47,10 +47,24 @@ function Comments({ post }) {
     setDesc("");
   };
 
+
+  const handleDeleteComment = async(commentId)=>{
+      axios.delete(`/posts/${commentId}/delete-comment`).then((res)=>{
+        Swal.fire({
+          text: 'Comment Deleted Successfully',
+          timer: 1000,
+          icon:'success',
+          showConfirmButton: false    
+        });
+        console.log('Comment deleted successfully');
+        queryClient.invalidateQueries(['posts']);
+      })
+  }
+
   return (
     <div className="comments">
       <div className="write">
-        <img src={currentUser.profilePicture  ||  "https://www.kindpng.com/picc/m/780-7804962_cartoon-avatar-png-image-transparent-avatar-user-image.png"} alt="" />
+        <img src={currentUser.profilePicture || "https://www.kindpng.com/picc/m/780-7804962_cartoon-avatar-png-image-transparent-avatar-user-image.png"} alt="" />
         <input
           type="text"
           placeholder="Comment your thoughts!"
@@ -62,7 +76,7 @@ function Comments({ post }) {
       </div>
       {sortedComments.map((comment) => (
         <div className="comment" key={comment._id}>
-          <img src={comment.profilePic ||  "https://www.kindpng.com/picc/m/780-7804962_cartoon-avatar-png-image-transparent-avatar-user-image.png"} alt="" />
+          <img src={comment.profilePic || "https://www.kindpng.com/picc/m/780-7804962_cartoon-avatar-png-image-transparent-avatar-user-image.png"} alt="" />
           <div className="c_container">
             <div className="arrow">
               <div className="osuter"></div>
@@ -75,8 +89,10 @@ function Comments({ post }) {
           </div>
           <span className="date">
             <ReactTimeago date={comment.createdAt} locale="en-US" />
+            <div className='delicon' onClick={() => {
+              handleDeleteComment(comment._id)
+            }}><DeleteForeverIcon /></div>
           </span>
-
         </div>
       ))}
     </div>

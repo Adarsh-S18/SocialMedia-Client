@@ -2,14 +2,14 @@ import axios from "axios"
 
 const header = localStorage.getItem("accessToken")
   ? {
-      token: "Bearer " + localStorage.getItem("accessToken"),
-    }
+    token: "Bearer " + localStorage.getItem("accessToken"),
+  }
   : {
-      token: "Bearer ",
-    };
+    token: "Bearer ",
+  };
 
-    console.log(header,"okkkkkkkkkkk");
-    
+console.log(header, "okkkkkkkkkkk");
+
 const instance = axios.create({
   baseURL: "https://api.hectrum.online/api",
   headers: header,

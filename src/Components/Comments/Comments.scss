@@ -62,9 +62,17 @@
 
       .date{
         flex:1;
+        display: flex;
         align-self: center;
         color: gray;
         font-size: 10px;
+      }
+      .delicon{
+        color: red;
+        // font-size: 4px;
+        margin-left: 10px;
+        cursor: pointer;
+        
       }
     }
   }
@@ -119,6 +127,7 @@
       margin: 0;
     }
   }
+  
 }
 
 

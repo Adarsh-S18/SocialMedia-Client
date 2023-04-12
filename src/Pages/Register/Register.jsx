@@ -63,11 +63,12 @@ function Register() {
             await axios.post(`/auth/register`, details, config)
                 .then((response) => {
                     console.log("Signup SUCCESS", response);
+                    
                     Swal.fire({
-                        text: 'User Registered Successfully.',
-                        timer: 1000,
+                        text: 'A Verification mail has been sent to the registered email address.',
+                        timer: 3000,
                         icon:'success',
-                        showConfirmButton: false    
+                        showConfirmButton: true    
                       });
                     navigate('/login');
                 }).catch((err) => {
@@ -75,6 +76,7 @@ function Register() {
                     err.response.data.error ? setError(err.response.data.error) : setError(err.response.data)
                 })
         } catch (error) {
+            alert(error.response.data)
             setError(true)
             console.log(error)
         }
@@ -143,41 +145,3 @@ function Register() {
 
 export default Register
 
-
-
-
-// <form onSubmit={handleSubmit}>
-//                                     <div className='fields'>
-//                                         <TextField className='form' id="standard-basic" InputLabelProps={{ style: { fontSize: 13 } }} label="UserName" name='username' value={data.username} onChange={handleChange} variant="standard" type='text' />
-//                                     </div>
-//                                     <div className='fields'>
-//                                         <TextField className='form' id="standard-basic" InputLabelProps={{ style: { fontSize: 13 } }} label="Email" name='email' value={data.email} onChange={handleChange} variant="standard" type="email" />
-//                                     </div>
-//                                     <div className='fields'>
-//                                         <TextField className='form' id="standard-basic" InputLabelProps={{ style: { fontSize: 13 } }} label="Password" name='password' value={data.password} onChange={handleChange} variant="standard" type="password" />
-//                                     </div>
-//                                     <div className='fields'>
-//                                         <TextField className='form' id="standard-basic" InputLabelProps={{ style: { fontSize: 13 } }} label="Confirm Password" value={data.confirmpass} name='confirmpass' onChange={handleChange} variant="standard" type="password" />
-//                                     </div>
-//                                     {/* <span style={{display:confirmPass ? 'none' : 'block',color:'red',fontSize:'13px',marginLeft:'20px',marginTop:'5px'}}>
-//                                         * Password does not match
-//                                     </span> */}
-//                                     <div className='buttonsub'>
-//                                         <button className='logbut' type='submit'>Register</button>
-//                                     </div>
-//                                 </form>
-
-/* <span style={{display:confirmPass ? 'none' : 'block',color:'red',fontSize:'13px',marginLeft:'20px',marginTop:'5px'}}>
-                                        * Password does not match
-                                    </span> */
-
-
-// .....
-// const handleChange = (e) => {
-//     setData({ ...data, [e.target.name]: e.target.value })
-// }
-// // const [confirmPass, setConfirmPass] = useState(true)
-// const handleSubmit = (e) => {
-//     e.preventDefault()
-
-//     // data.password === data.confirmpass ? dispatch(signUp(data)) : setConfirmPass(false)
