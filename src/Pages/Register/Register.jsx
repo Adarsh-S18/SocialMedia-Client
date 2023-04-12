@@ -76,7 +76,7 @@ function Register() {
                     err.response.data.error ? setError(err.response.data.error) : setError(err.response.data)
                 })
         } catch (error) {
-            alert(error.response.data)
+            // alert(error.response.data)
             setError(true)
             console.log(error)
         }
