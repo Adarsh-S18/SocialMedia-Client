@@ -38,7 +38,7 @@ Modal.setAppElement('#root')
 
 const Post = ({ post }) => {
 
-  const { currentUser, config ,setcurrentUser } = useContext(AuthContext)
+  const { currentUser, config, setcurrentUser } = useContext(AuthContext)
   const [commentOpen, setCommentOpen] = useState(false)
   const [user, setUser] = useState({})
   const [menuOpen, setMenuOpen] = useState(false)
@@ -68,7 +68,7 @@ const Post = ({ post }) => {
 
   useEffect(() => {
     axios.get(`users/${post.userId}`, config).then((res) => {
-      setUser(res.data) 
+      setUser(res.data)
     }).catch((err) => { console.log(err); })
     post.likes.includes(currentUser._id) ? setLiked(true) : setLiked(false)
   }, [post])
@@ -116,19 +116,6 @@ const Post = ({ post }) => {
       }
     })
   }
-
-  const handleUpdate = () => {
-    if (desc) {
-      axios.put(`posts/${post._id}`,{ desc }, config).then((res) => {
-        setUpdateOpen(!updateOpen)
-        queryClient.invalidateQueries(['posts'])
-      })
-    } else {
-      setDesc(null)
-      setUpdateOpen(!updateOpen)
-    }
-  }
-
 
   const handleReport = () => {
     if (report === "other" && desc.trim().length !== 0 && desc != null) {
@@ -178,6 +165,29 @@ const Post = ({ post }) => {
   }
 
 
+  // UPDATE POST
+
+  const handleSubmit = () => {
+    axios
+      .put(`posts/${post._id}`, { desc }, config)
+      .then((res) => {
+        setUpdateOpen(false);
+        queryClient.invalidateQueries(["posts"]);
+        setMenuOpen(false)
+
+
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleUpdate = () => {
+    setUpdateOpen(true);
+    setMenuOpen(false)
+
+  };
+
   return (
     <div className="post">
       <div className="container">
@@ -206,7 +216,13 @@ const Post = ({ post }) => {
             </>
           ) : menuOpen && <button onClick={openModal} style={{ backgroundColor: "orange" }}>Report</button>
           }
-          {updateOpen && (<><input className='soke' type="text" placeholder="Update description" onChange={(e) => setDesc(e.target.value)} onKeyDown={handleKeyDown} /></>)}
+          {/* {updateOpen && (<><input className='soke' type="text" placeholder="Update description" onChange={(e) => setDesc(e.target.value)} onKeyDown={handleKeyDown} /></>)} */}
+          {updateOpen && (
+            <div className="popup">
+              <textarea className='ttextarea' style={{color:'black'}}  value={desc || post.desc}  onChange={(e) => setDesc(e.target.value)} />
+              <button className="aaa" onClick={handleSubmit}>Submit</button>
+            </div>
+          )}
           <Modal
             isOpen={modalIsOpen}
             onAfterOpen={afterOpenModal}

@@ -48,16 +48,16 @@ function Comments({ post }) {
   };
 
 
-  const handleDeleteComment = (commentId)=>{
-      axios.delete(`/posts/${commentId}/delete-comment`)
-        Swal.fire({
-          text: 'Comment Deleted Successfully',
-          timer: 1000,
-          icon:'success',
-          showConfirmButton: false    
-        });
-        console.log('Comment deleted successfully');
-        queryClient.invalidateQueries(['posts']);
+  const handleDeleteComment = (commentId) => {
+    axios.delete(`/posts/${commentId}/delete-comment`)
+    Swal.fire({
+      text: 'Comment Deleted Successfully',
+      timer: 1000,
+      icon: 'success',
+      showConfirmButton: false
+    });
+    console.log('Comment deleted successfully');
+    queryClient.invalidateQueries(['posts']);
   }
 
   return (
@@ -88,9 +88,11 @@ function Comments({ post }) {
           </div>
           <span className="date">
             <ReactTimeago date={comment.createdAt} locale="en-US" />
-            <div className='delicon' onClick={() => {
-              handleDeleteComment(comment._id)
-            }}><DeleteForeverIcon /></div>
+            {comment.userId === currentUser._id && (
+              <div className="delicon" onClick={() => handleDeleteComment(comment._id)}>
+                <DeleteForeverIcon />
+              </div>
+            )}
           </span>
         </div>
       ))}
