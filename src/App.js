@@ -6,7 +6,8 @@ import AdminLogin from "./AdminPages/AdminLogin/AdminLogin";
 import EditProfile from "./Components/EditProfile/EditProfile";
 import Leftbar from "./Components/Leftbar/Leftbar";
 import Navbar from "./Components/Navbar/Navbar";
-import Notifications from "./Components/Notifications/Notifications";
+import Notificationss from './Pages/Notificationss/Notificationss'
+// import Notifications from "./Components/Notifications/Notifications";
 import Rightbar from "./Components/Rightbar/Rightbar";
 import { AuthContext } from "./Context/authContext";
 import { DarkmodeContext } from "./Context/DarkmodeContext";
@@ -64,7 +65,7 @@ function App() {
         },
         {
           path: '/notifications',
-          element: <Notifications />
+          element: <Notificationss />
         },
         {
           path: '/profile/:id',

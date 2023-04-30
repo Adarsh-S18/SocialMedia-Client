@@ -1,6 +1,8 @@
-import React, { useContext } from 'react'
+import { useContext, useState, useEffect } from "react";
 import './Leftbar.scss'
 import HomeIcon from '@mui/icons-material/Home';
+// import { FcGlobe } from "react-icons/fc";
+import LanguageIcon from '@mui/icons-material/Language';
 // import NotificationsActiveRoundedIcon from '@mui/icons-material/NotificationsActiveRounded';
 import LogoutIcon from '@mui/icons-material/Logout';
 // import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
@@ -13,9 +15,14 @@ import Swal from 'sweetalert2';
 
 
 
+
 function Leftbar() {
   const { currentUser , setcurrentUser } = useContext(AuthContext)
   const navigate = useNavigate()
+  const [count, setCount] = useState(0)
+
+  const [notifications, setNotifications] = useState([])
+
 
   const handleLogout = () => {
     Swal.fire({
@@ -39,6 +46,10 @@ function Leftbar() {
       }
     });
   };
+  useEffect(() => {
+    notifications &&
+      setCount(notifications.filter(e => e.isVisited === false).length)
+  }, [notifications])
 
 
 
@@ -66,6 +77,13 @@ function Leftbar() {
               <GroupsIcon />
               <span>Friends</span>
             </div>
+          </Link>
+
+          <Link to='/notifications' style={{ textDecoration: "none",padding:"0",margin:"0" }}>
+          <div className="item">
+            <LanguageIcon/>
+            <span>Notifications</span>
+          </div>
           </Link>
 
           <Link to='/messages' style={{ textDecoration: 'none', color: 'black' }}>

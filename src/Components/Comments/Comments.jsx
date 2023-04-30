@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react'
+import { SocketContext } from '../../Context/socketContext'
 import './Comments.scss'
 import { AuthContext } from '../../Context/authContext'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
@@ -11,6 +12,17 @@ function Comments({ post }) {
   const { currentUser } = useContext(AuthContext)
   const [desc, setDesc] = useState("");
   const queryClient = useQueryClient()
+  const socket = useContext(SocketContext)
+
+
+  const handleNotification = (type) => {
+    socket?.emit("sendNotification", {
+      senderId: currentUser._id,
+      type,
+      userId:post.userId
+    });
+  };
+
 
   const sortedComments = post.comments.sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
@@ -22,6 +34,7 @@ function Comments({ post }) {
     },
     {
       onSuccess: () => {
+        handleNotification("commented on your post")
         queryClient.invalidateQueries(["posts"]);
       },
     }
